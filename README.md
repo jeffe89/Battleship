@@ -32,7 +32,7 @@ The Battleship Game Simulator allows a single player to engage in a strategic gu
    ```
 2. Navigate to the project directory:
    ```bash
-   cd battleship-simulator
+   cd battleship
    ```
 3. Compile the program:
    ```bash
