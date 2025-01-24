@@ -137,6 +137,16 @@ Outputs the game statistics, including total hits, misses, and ships sunk, and l
 ### `void startGame()`
 Main function that initializes the game, handles player turns, and manages the game flow.
 
+## Project Details
+
+- **Author**: Geoffrey Giordano
+- **Game Type**: Single-player Battleship game against a CPU opponent.
+- **Board Size**: 10x10 grid for both player and CPU.
+- **Ship Placement**: Ships can be placed manually by the player, randomly by the program, or via text file input.
+- **Turn Logic**: Alternates between the player and CPU until one side's ships are fully destroyed.
+- **Stat Tracking**: Tracks hits, misses, and ships sunk throughout the game.
+- **File Logging**: Game statistics and results are logged to battleship.log.
+
 ## Future Enhancements
 - Add advanced AI for more challenging gameplay.
 - Implement multiplayer support over a network.
