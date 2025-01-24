@@ -52,97 +52,87 @@ The Battleship Game Simulator allows a single player to engage in a strategic gu
 
 ## Function Descriptions
 
-### `void welcomeScreen()`
+### `void welcome_screen(ofstream& bsLog)`
 Displays a welcome message and instructions for the player.
+- `bsLog`: File stream for logging game events.
 
-### `void initBoard(char board[10][10])`
+### `void init_board(char gameBoard[BOARD_SIZE][BOARD_SIZE])`
 Initializes the game board by filling it with `'-'` to represent empty spaces.
+- **Parameters:**
+  - `gameBoard[BOARD_SIZE][BOARD_SIZE]`: The game board array to initialize.
 
-### `void initBoardManual(char board[10][10])`
+### `void init_board_manual(ofstream& bsLog, char p1Board[BOARD_SIZE][BOARD_SIZE])`
 Allows the player to manually place ships on their board.
+- **Parameters:**
+- - `bsLog`: File stream for logging game events.
+  - `p1Board[BOARD_SIZE][BOARD_SIZE]`: The player's game board array.
+ 
+### `void init_board_read(ofstream& bsLog, string file_name, char p1Board[BOARD_SIZE][BOARD_SIZE])`
+Allows the player to place ships on their board according to text file input.
+- **Parameters:**
+  - `bsLog`: File stream for logging game events.
+  - `file_name`: Text file name to pull data on ship positions.
+  - `p1Board[BOARD_SIZE][BOARD_SIZE]`: The player's game board array.
 
-### `void initBoardRandom(char board[10][10])`
+### `void init_board_random(char p1Board[BOARD_SIZE][BOARD_SIZE])`
 Randomly places ships on the board for either the player or the CPU.
-
-### `bool placeShip(char board[10][10], int shipSize, char shipChar)`
-Attempts to place a ship of size `shipSize` on the board using the character `shipChar`.
 - **Parameters:**
-  - `board`: The game board array.
-  - `shipSize`: Size of the ship to place.
-  - `shipChar`: Character representing the ship type.
-- **Returns:**
-  - `true` if the ship is successfully placed, `false` otherwise.
+  - `p1Board[BOARD_SIZE][BOARD_SIZE]`: The game board array.
 
-### `void printBoard(const char board[10][10], bool hideShips)`
-Prints the current state of the board. If `hideShips` is true, ships are hidden.
+### `void p1update(ofstream& bsLog, char p2Board[BOARD_SIZE][BOARD_SIZE], char p2HiddenBoard[BOARD_SIZE][BOARD_SIZE], int row, int col, Player& p1, Player& p2)`
+Updates the player's board based on the result of an attack and logs the event to a file.
 - **Parameters:**
-  - `board`: The game board array.
-  - `hideShips`: Whether to hide ship positions.
+  - `bsLog`: File stream for logging game events.
+  - `p2Board[BOARD_SIZE][BOARD_SIZE]`: The cpu's displayed game board array.
+  - `char p2HiddenBoard[BOARD_SIZE][BOARD_SIZE]`: The cpu's hidden game board array.
+  - `row`: Row index to update.
+  - `col`: Column index to update.
+  - `Player& p1`: Player 1 struct for endgame statistics.
+  - `Player& p2`: Player 2 (CPU) struct for endgame statistics.
+  
 
-### `void displaySingleBoard(const char board[10][10])`
-Displays a single board without hiding any ships.
+### `void p2update(ofstream& bsLog, char p1Board[BOARD_SIZE][BOARD_SIZE], int row, int col, Player& p1, Player& p2)`
+Updates the CPU's board based on the result of an attack and logs the event to a file.
 - **Parameters:**
-  - `board`: The game board array.
+  - `bsLog`: File stream for logging game events.
+  - `p1Board[BOARD_SIZE][BOARD_SIZE]`: The player's game board array.
+  - `row`: Row index to update.
+  - `col`: Column index to update.
+  - `Player& p1`: Player 1 struct for endgame statistics.
+  - `Player& p2`: Player 2 (CPU) struct for endgame statistics.
 
-### `void displayBothBoards(const char playerBoard[10][10], const char cpuBoard[10][10])`
-Displays both the player and CPU boards, hiding CPU ships.
-- **Parameters:**
-  - `playerBoard`: The player's game board.
-  - `cpuBoard`: The CPU's game board.
-
-### `bool isGameOver(char board[10][10])`
-Checks if all ships on the board have been sunk.
-- **Parameters:**
-  - `board`: The game board array.
-- **Returns:**
-  - `true` if all ships are sunk, `false` otherwise.
-
-### `bool isWinner(const char board[10][10])`
+### `bool is_winner(char p1Board[BOARD_SIZE][BOARD_SIZE])`
 Determines if the player or CPU has won the game.
 - **Parameters:**
-  - `board`: The game board array.
+  - `p1Board[BOARD_SIZE][BOARD_SIZE]`: The game board array.
 - **Returns:**
   - `true` if the board belongs to the winner.
 
-### `bool attack(char opponentBoard[10][10], int row, int col)`
-Handles an attack on the opponent's board at the given row and column.
-- **Parameters:**
-  - `opponentBoard`: The opponent's game board.
-  - `row`: The row index of the attack.
-  - `col`: The column index of the attack.
-- **Returns:**
-  - `true` if the attack is a hit, `false` otherwise.
-
-### `void p1Update(char board[10][10], int row, int col, char result)`
-Updates the player's board based on the result of an attack.
-- **Parameters:**
-  - `board`: The player's game board.
-  - `row`: Row index to update.
-  - `col`: Column index to update.
-  - `result`: The result of the attack ('H' for hit, 'M' for miss).
-
-### `void p2Update(char board[10][10], int row, int col, char result)`
-Updates the CPU's board based on the result of an attack.
-- **Parameters:**
-  - `board`: The CPU's game board.
-  - `row`: Row index to update.
-  - `col`: Column index to update.
-  - `result`: The result of the attack ('H' for hit, 'M' for miss).
-
-### `bool checkIfSunk(char board[10][10], char shipChar)`
+### `bool check_if_sunk(ofstream& bsLog, Player& player)`
 Checks if a ship represented by `shipChar` is completely sunk.
 - **Parameters:**
-  - `board`: The game board array.
-  - `shipChar`: Character representing the ship type.
+  - `bsLog`: File stream for logging game events.
+  - `player`: Player structure containing ship information.
 - **Returns:**
   - `true` if the ship is completely sunk, `false` otherwise.
 
-### `void outputStats(int totalHits, int totalMisses, int shipsSunk)`
-Outputs the game statistics, including total hits, misses, and ships sunk.
+### `void display_single_board(char gameBoard[BOARD_SIZE][BOARD_SIZE])`
+Displays a single board without hiding any ships.
 - **Parameters:**
-  - `totalHits`: Total number of hits.
-  - `totalMisses`: Total number of misses.
-  - `shipsSunk`: Total number of ships sunk.
+  - `gameBoard[BOARD_SIZE][BOARD_SIZE]]`: The game board array.
+
+### `void display_both_boards(char p1Board[BOARD_SIZE][BOARD_SIZE], char p2Board[BOARD_SIZE][BOARD_SIZE])`
+Displays both the player and CPU boards, hiding CPU ships.
+- **Parameters:**
+  - `p1Board[BOARD_SIZE][BOARD_SIZE]`: The player's game board.
+  - `p2Board[BOARD_SIZE][BOARD_SIZE]`: The CPU's game board.
+
+### `void outputStats(ofstream& bsLog, Player& p1, Player& p2)`
+Outputs the game statistics, including total hits, misses, and ships sunk, and logs the statistics to a file.
+- **Parameters:**
+  - `bsLog`: File stream for logging game events.
+  - `p1`: Player 1 structure containing game statistics.
+  - `p2`: Player 2 structure containing game statistics.
 
 ### `void startGame()`
 Main function that initializes the game, handles player turns, and manages the game flow.
