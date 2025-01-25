@@ -54,7 +54,8 @@ The Battleship Game Simulator allows a single player to engage in a strategic gu
 
 ### `void welcome_screen(ofstream& bsLog)`
 Displays a welcome message and instructions for the player.
-- `bsLog`: File stream for logging game events.
+-**Parameters:**
+   - `bsLog`: File stream for logging game events.
 
 ### `void init_board(char gameBoard[BOARD_SIZE][BOARD_SIZE])`
 Initializes the game board by filling it with `'-'` to represent empty spaces.
@@ -64,7 +65,7 @@ Initializes the game board by filling it with `'-'` to represent empty spaces.
 ### `void init_board_manual(ofstream& bsLog, char p1Board[BOARD_SIZE][BOARD_SIZE])`
 Allows the player to manually place ships on their board.
 - **Parameters:**
-- - `bsLog`: File stream for logging game events.
+  - `bsLog`: File stream for logging game events.
   - `p1Board[BOARD_SIZE][BOARD_SIZE]`: The player's game board array.
  
 ### `void init_board_read(ofstream& bsLog, string file_name, char p1Board[BOARD_SIZE][BOARD_SIZE])`
