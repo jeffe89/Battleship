@@ -30,17 +30,17 @@ struct Player {
 };
 
 int welcome_screen(ofstream& bsLog);																														// Display wlecome screen and rules of Battleship
-void init_board(char gameBoard[BOARD_SIZE][BOARD_SIZE]);																									// Initialize the board for default
-void init_board_manual(ofstream& bsLog, char p1Board[BOARD_SIZE][BOARD_SIZE]);																				// Initialize the board for manual placement
-void init_board_read(ofstream& bsLog, string file_name, char p1Board[BOARD_SIZE][BOARD_SIZE]);																// Initialize the board for reading from a file
-void init_board_random(char p1Board[BOARD_SIZE][BOARD_SIZE]);																								// Initialize the board for random generation
+void init_board(char gameBoard[BOARD_SIZE][BOARD_SIZE]);													// Initialize the board for default
+void init_board_manual(ofstream& bsLog, char p1Board[BOARD_SIZE][BOARD_SIZE]);											// Initialize the board for manual placement
+void init_board_read(ofstream& bsLog, string file_name, char p1Board[BOARD_SIZE][BOARD_SIZE]);									// Initialize the board for reading from a file
+void init_board_random(char p1Board[BOARD_SIZE][BOARD_SIZE]);													// Initialize the board for random generation
 void p1update(ofstream& bsLog, char p2Board[BOARD_SIZE][BOARD_SIZE], char p2HiddenBoard[BOARD_SIZE][BOARD_SIZE], int row, int col, Player& p1, Player& p2);	// Update board and determine if a shot was a hit or miss (1 for hit and -1 for miss) for player 1
-void p2update(ofstream& bsLog, char p1Board[BOARD_SIZE][BOARD_SIZE], int row, int col, Player& p1, Player& p2);												// Update board and determine if a shot was a hit or miss (1 for hit and -1 for miss) for player 2
-bool is_winner(char p1Board[BOARD_SIZE][BOARD_SIZE]);																										// Determine if a winner exists
-void check_if_sunk(ofstream& bsLog, Player& player);																										// Determines if a player ship has sunk
-void display_single_board(char gameBoard[BOARD_SIZE][BOARD_SIZE]);																							// Display board to screen
-void display_both_boards(char p1Board[BOARD_SIZE][BOARD_SIZE], char p2Board[BOARD_SIZE][BOARD_SIZE]);														// Display board to screen
-void output_stats(ofstream& bsLog, Player& p1, Player& p2);																									// Write the statistics collected for each player to the log file
+void p2update(ofstream& bsLog, char p1Board[BOARD_SIZE][BOARD_SIZE], int row, int col, Player& p1, Player& p2);							// Update board and determine if a shot was a hit or miss (1 for hit and -1 for miss) for player 2
+bool is_winner(char p1Board[BOARD_SIZE][BOARD_SIZE]);														// Determine if a winner exists
+void check_if_sunk(ofstream& bsLog, Player& player);														// Determines if a player ship has sunk
+void display_single_board(char gameBoard[BOARD_SIZE][BOARD_SIZE]);												// Display board to screen
+void display_both_boards(char p1Board[BOARD_SIZE][BOARD_SIZE], char p2Board[BOARD_SIZE][BOARD_SIZE]);								// Display board to screen
+void output_stats(ofstream& bsLog, Player& p1, Player& p2);													// Write the statistics collected for each player to the log file
 
 int main()
 {
