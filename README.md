@@ -54,7 +54,7 @@ The Battleship Game Simulator allows a single player to engage in a strategic gu
 
 ### `void welcome_screen(ofstream& bsLog)`
 Displays a welcome message and instructions for the player.
--**Parameters:**
+- **Parameters:**
    - `bsLog`: File stream for logging game events.
 
 ### `void init_board(char gameBoard[BOARD_SIZE][BOARD_SIZE])`
